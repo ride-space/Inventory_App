@@ -1,0 +1,161 @@
+@use './variables' as s;
+/*------------------------------------------------------------------------------
+  reset PC
+------------------------------------------------------------------------------*/
+
+html,
+input,
+textarea,
+select,
+button {
+  font-family: '游ゴシック体', YuGothic, '游ゴシック', 'Yu Gothic', 'メイリオ',
+    Meiryo, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+html {
+  font-family: s.$font-family;
+  color: #000;
+  background: #fff;
+  font-size: 62.5%;
+  line-height: 1.7192;
+  word-break: break-all;
+}
+
+body {
+  background: #fff;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  border: 0;
+  margin: 0;
+  vertical-align: top;
+  max-width: 100%;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  transition: s.$transition01;
+  @include s.pc {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+input,
+select,
+textarea,
+button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+@include s.placeholder(#ccc);
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: block;
+}
+
+#wrapper {
+  position: relative;
+}
+
+dl,
+dt,
+dd {
+  padding: 0;
+  margin: 0;
+}
+
+@include s.pc {
+  .sp {
+    display: none !important;
+  }
+
+  a[href^='tel:'] {
+    pointer-events: none;
+  }
+
+  a,
+  a::before,
+  a::after,
+  button {
+    transition: s.$transition01;
+  }
+}
+
+/*------------------------------------------------------------------------------
+  reset SP
+------------------------------------------------------------------------------*/
+@include s.sp {
+  .pc {
+    display: none !important;
+  }
+}
+
+/*------------------------------------------------------------------------------
+  base
+------------------------------------------------------------------------------*/
