@@ -1,4 +1,6 @@
 import type { CustomNextPage } from 'next';
+import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
 import { AppLayout } from 'src/layout';
 import { selectCount } from 'src/reducks/CounterStore';
 import { decrement, increment } from 'src/reducks/CounterStore/slices';
@@ -9,8 +11,22 @@ import styles from './index.module.scss';
 const Index: CustomNextPage = () => {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
+  const { data, status } = useSession();
   return (
     <div>
+      {data?.user?.name || <Link href="/auth/signin"> GO TO SIGN</Link>}
+      {status === 'authenticated' && (
+        <button
+          onClick={() => {
+            return signOut();
+          }}
+        >
+          SIGN OUT
+        </button>
+      )}
+      <div>
+        <Link href="/categories">PROTECTED PAGE</Link>
+      </div>
       <div className={styles.test}>index</div>
       <div>
         <button
@@ -36,5 +52,6 @@ const Index: CustomNextPage = () => {
 };
 
 Index.getLayout = AppLayout;
+Index.requireAuth =true
 
 export default Index;
