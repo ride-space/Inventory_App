@@ -4,7 +4,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { AppLayout } from 'src/layout';
 import { selectCount } from 'src/reducks/CounterStore';
 import { decrement, increment } from 'src/reducks/CounterStore/slices';
-import { useAppDispatch, useAppSelector } from 'src/reducks/store/hooks';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
 import styles from './index.module.scss';
 
@@ -12,6 +12,7 @@ const Index: CustomNextPage = () => {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
   const { data, status } = useSession();
+
   return (
     <div>
       {data?.user?.name || <Link href="/auth/signin"> GO TO SIGN</Link>}
@@ -52,6 +53,6 @@ const Index: CustomNextPage = () => {
 };
 
 Index.getLayout = AppLayout;
-Index.requireAuth =true
+Index.requireAuth = true;
 
 export default Index;

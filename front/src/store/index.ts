@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { CounterReducer } from 'src/reducks/CounterStore';
+import { serverApi } from 'src/service';
 
 export const store = configureStore({
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat(serverApi.middleware);
+  },
   reducer: {
+    [serverApi.reducerPath]: serverApi.reducer,
     counter: CounterReducer,
   },
 });

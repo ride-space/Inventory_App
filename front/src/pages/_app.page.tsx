@@ -1,19 +1,15 @@
-import 'src/styles/reset.scss';
-import 'src/styles/global.scss';
+// import 'src/styles/reset.scss';
+// import 'src/styles/global.scss';
 
-import type {
-  ColorScheme} from '@mantine/core';
-import {
-  ColorSchemeProvider,
-  MantineProvider,
-} from '@mantine/core';
+import type { ColorScheme } from '@mantine/core';
+import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import type { CustomAppPage } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { useState } from 'react';
 import { Provider } from 'react-redux';
 import { AuthGuard } from 'src/component/AuthGuard';
-import { store } from 'src/reducks/store/store';
+import { store } from 'src/store';
 
 const App: CustomAppPage = ({
   Component,
@@ -41,6 +37,8 @@ const App: CustomAppPage = ({
           toggleColorScheme={toggleColorScheme}
         >
           <MantineProvider
+            withGlobalStyles
+            withNormalizeCSS
             theme={{
               colorScheme: colorScheme,
               fontFamily: 'Montserrat,sans-self',

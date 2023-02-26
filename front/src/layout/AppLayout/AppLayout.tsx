@@ -20,14 +20,6 @@ export const AppLayout: CustomLayout = (page) => {
   return (
     <div>
       <AppShell
-        styles={{
-          main: {
-            background:
-              theme.colorScheme === 'dark'
-                ? theme.colors.dark[8]
-                : theme.colors.dark[0],
-          },
-        }}
         navbarOffsetBreakpoint="sm"
         navbar={<Nav opened={opened} hiddenBreakpoint="sm" setOpened={setOpened}/>}
         header={
