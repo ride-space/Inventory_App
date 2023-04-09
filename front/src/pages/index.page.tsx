@@ -6,7 +6,6 @@ import { selectCount } from 'src/reducks/CounterStore';
 import { decrement, increment } from 'src/reducks/CounterStore/slices';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 
-import styles from './index.module.scss';
 
 const Index: CustomNextPage = () => {
   const count = useAppSelector(selectCount);
@@ -28,7 +27,6 @@ const Index: CustomNextPage = () => {
       <div>
         <Link href="/categories">PROTECTED PAGE</Link>
       </div>
-      <div className={styles.test}>index</div>
       <div>
         <button
           aria-label="Increment value"
