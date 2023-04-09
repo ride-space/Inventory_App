@@ -1,17 +1,21 @@
 import { Button, Center, Group, Stack, Text, Title } from '@mantine/core';
+import type { InferGetServerSidePropsType } from 'next';
 import { getProviders, signIn } from 'next-auth/react';
 import { FaGoogle } from 'react-icons/fa';
 
-const Signin = ({ providers }: any) => {
+const Signin = ({
+  providers,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
-      {Object.values(providers).map((provider: any) => {
-        return (
-          <Center key={provider.name} sx={{ height: '100vh', width: '100vw' }}>
-            <Stack spacing="xl">
-              <Title align="center">Welcome to Inventory App </Title>
-              {provider.name === 'Google' && (
+      <Center sx={{ height: '100vh', width: '100vw' }}>
+        <Stack spacing={4}>
+          <Title align="center">Welcome to Inventory App </Title>
+          {providers &&
+            Object.values(providers).map((provider) => {
+              return (
                 <Button
+                  key={provider.name}
                   onClick={() => {
                     return signIn(provider.id);
                   }}
@@ -23,11 +27,10 @@ const Signin = ({ providers }: any) => {
                     <FaGoogle />
                   </Group>
                 </Button>
-              )}
-            </Stack>
-          </Center>
-        );
-      })}
+              );
+            })}
+        </Stack>
+      </Center>
     </>
   );
 };

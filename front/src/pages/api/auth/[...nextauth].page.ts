@@ -2,6 +2,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import type { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import LineProvider from "next-auth/providers/line";
 import { prisma } from 'src/config/prisma';
 
 export const authOptions: NextAuthOptions = {
@@ -29,6 +30,10 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
+    LineProvider({
+      clientId: process.env.LINE_CLIENT_ID|| '',
+      clientSecret: process.env.LINE_CLIENT_SECRET|| '',
+    })
   ],
   secret: process.env.NEXTAUTH_SECRET,
 
@@ -37,7 +42,7 @@ export const authOptions: NextAuthOptions = {
     strategy: 'database',
     updateAge: 60 * 60 * 24, // 24 hours
   },
-  // useSecureCookies: process.env.NODE_ENV === 'production', // NO HTTPS IN DEV
+  useSecureCookies: process.env.NODE_ENV === 'production', // NO HTTPS IN DEV
 };
 
 export default NextAuth(authOptions);
